@@ -61,4 +61,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = MonsterProps)
 		USphereComponent* AttackRangeSphere;
+
+
+public:
+	bool IsInSightRange(float Distance)  { return Distance < SightSphere->GetScaledSphereRadius(); }
+	bool IsInAttackRange(float Distance) { return Distance < AttackRangeSphere->GetScaledSphereRadius(); }
 };

@@ -58,7 +58,8 @@ void AAmberMonster::Tick(float DeltaTime)
 	//// Direction
 	 FVector ToPlayer = AmberCharacter->GetActorLocation() - GetActorLocation();
 	 float DistanceToPlayer = ToPlayer.Size();
-	 if (DistanceToPlayer > SightSphere->GetScaledSphereRadius())
+	 bool IsInSight = IsInSightRange(DistanceToPlayer);
+	 if (IsInSight == false)
 	 {
 		 // The Player is OutOfSight
 		 return;
@@ -66,13 +67,8 @@ void AAmberMonster::Tick(float DeltaTime)
 
 	 ToPlayer /= DistanceToPlayer; // nomalizes
 	 
-
 	// Move Monster to Player
-	AddMovementInput(ToPlayer, Speed * DeltaTime);
-
-	//FRotator ToPlayerRotation = ToPlayer.Rotation();
-	//ToPlayerRotation.Pitch = 0;
-	//SightSource->SetWorldRotation(ToPlayerRotation);
+	AddMovementInput(ToPlayer, Speed * DeltaTime);;
 
 	FRotator LookAtRotation = UKismetMathLibrary::FindLookAtRotation(MonsterLocation, PlayerLocation);
 	SetActorRotation(LookAtRotation);
@@ -80,7 +76,11 @@ void AAmberMonster::Tick(float DeltaTime)
 	//GEngine->AddOnScreenDebugMessage(1, 20.f, FColor::Red, "Im Monster");
 	DrawDebugLine(GetWorld(), MonsterLocation, PlayerLocation, FColor::Red);
 
-
+	bool IsInAttack = IsInAttackRange(DistanceToPlayer);
+	if (IsInAttack)
+	{
+		// Do Attack Action
+	}
 }
 
 // Called to bind functionality to input
