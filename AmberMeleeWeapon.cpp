@@ -3,6 +3,7 @@
 
 #include "AmberMeleeWeapon.h"
 #include "Kismet/GameplayStatics.h"
+#include "AmberMonster.h"
 
 // Sets default values
 AAmberMeleeWeapon::AAmberMeleeWeapon()
@@ -19,7 +20,7 @@ AAmberMeleeWeapon::AAmberMeleeWeapon()
 
 	ProxBox = CreateDefaultSubobject<UBoxComponent>(TEXT("ProxBox"));
 	ProxBox->OnComponentBeginOverlap.AddDynamic(this, &AAmberMeleeWeapon::Prox);
-	ProxBox->AttachToComponent(RootComponent);
+	ProxBox->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepRelativeTransform);
 }
 
 // Called when the game starts or when spawned
@@ -36,14 +37,15 @@ void AAmberMeleeWeapon::Tick(float DeltaTime)
 
 }
 
-void AAmberMeleeWeapon::Prox_Implementation(AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+void AAmberMeleeWeapon::Prox_Implementation(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	if (OtherComp != OtherActor->GetRootComponent())
 	{
 		return;
 	}
 
-	if (IsSwinging && OtherActor != Holder && !Hits.Contains(OtherActor))
+	AActor* HolderActor = Cast<AActor>(Holder);
+	if (IsSwinging && OtherActor != HolderActor && !Hits.Contains(OtherActor))
 	{
 		OtherActor->TakeDamage(AttackDamage + Holder->BaseAttackDamage, FDamageEvent(), nullptr, this);
 		Hits.Add(OtherActor);
