@@ -210,9 +210,9 @@ void AAmberCharacter::PickupIMPL()
 
 void AAmberCharacter::OnBeginOverlapL(class AActor* OtherActor)
 {
-	UE_LOG(LogTemp, Warning, TEXT("OnOverlapBegin"));
-
 	if (OtherActor->Implements<UInteractable>()) {
+		UE_LOG(LogTemp, Warning, TEXT("OnOverlapBegin"));
+
 		InteractInRange.AddUnique(Cast<AAmberActorBaseInteractable>(OtherActor));
 
 		const AAmberActorBaseInteractable* t = Cast<AAmberActorBaseInteractable>(OtherActor);
@@ -227,7 +227,9 @@ void AAmberCharacter::OnEndOverlapL(class AActor* OtherActor)
 {
 	if (OtherActor->Implements<UInteractable>()) {
 		InteractInRange.Remove(Cast<AAmberActorBaseInteractable>(OtherActor));
+		UE_LOG(LogTemp, Warning, TEXT("OnOverlapEnd"));
+
+
 	}
 
-	UE_LOG(LogTemp, Warning, TEXT("OnOverlapEnd"));
 }

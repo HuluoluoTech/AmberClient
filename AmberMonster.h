@@ -21,7 +21,7 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
@@ -52,6 +52,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = MonsterProps)
 		float TimesSinceLastStrike;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = MonsterProps)
+		USceneComponent* SightSource;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = MonsterProps)
 		USphereComponent* SightSphere;
