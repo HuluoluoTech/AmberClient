@@ -24,7 +24,6 @@ AAmberMonster::AAmberMonster()
 
 	SightSource = CreateDefaultSubobject<USceneComponent>(TEXT("RootComponent"));
 	SightSource->SetupAttachment(RootComponent);
-	//RootComponent = SightSource;
 
 	SightSphere = CreateDefaultSubobject<USphereComponent>(TEXT("SightSphere"));
 	SightSphere->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepRelativeTransform);
@@ -57,25 +56,28 @@ void AAmberMonster::Tick(float DeltaTime)
 
 	//// Player - Monster
 	//// Direction
-	// FVector ToPlayer = AmberPawn->GetActorLocation() - GetActorLocation();
-	// ToPlayer.Normalize();
+	 FVector ToPlayer = AmberCharacter->GetActorLocation() - GetActorLocation();
+	 float DistanceToPlayer = ToPlayer.Size();
+	 if (DistanceToPlayer > SightSphere->GetScaledSphereRadius())
+	 {
+		 // The Player is OutOfSight
+		 return;
+	 }
+
+	 ToPlayer /= DistanceToPlayer; // nomalizes
+	 
 
 	// Move Monster to Player
-	//AddMovementInput(ToPlayer, Speed * DeltaTime);
+	AddMovementInput(ToPlayer, Speed * DeltaTime);
 
-	/*FRotator ToPlayerRotation = ToPlayer.Rotation();
-	ToPlayerRotation.Pitch = 0;
-	*/
-	// SightSource->SetWorldRotation(ToPlayerRotation);
+	//FRotator ToPlayerRotation = ToPlayer.Rotation();
+	//ToPlayerRotation.Pitch = 0;
+	//SightSource->SetWorldRotation(ToPlayerRotation);
 
 	FRotator LookAtRotation = UKismetMathLibrary::FindLookAtRotation(MonsterLocation, PlayerLocation);
 	SetActorRotation(LookAtRotation);
 
 	//GEngine->AddOnScreenDebugMessage(1, 20.f, FColor::Red, "Im Monster");
-
-
-
-
 	DrawDebugLine(GetWorld(), MonsterLocation, PlayerLocation, FColor::Red);
 
 
