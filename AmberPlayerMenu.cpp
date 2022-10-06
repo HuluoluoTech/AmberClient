@@ -26,7 +26,7 @@ void UAmberPlayerMenu::SetPlayerRef(AAmberCharacter* AmberPlayer)
 
 void UAmberPlayerMenu::OnItemUse()
 {
-	PlayerRef->UseItem(PlayerRef->ItemSelected);
+	PlayerRef->UseItem(ItemInfo);
 }
 
 void UAmberPlayerMenu::OnItemDrop()

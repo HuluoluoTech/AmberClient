@@ -22,16 +22,13 @@ public:
 	UAmberInventoryIcon(const FObjectInitializer& ObjectInitializer);
 
 public:
-	void SetPlayerRef(TWeakPtr<AAmberCharacter> AmberPlayer);
-	void OnButtonClick();
-	void SetItemInfo(FAmberItemInfo AmberItemInfo);
+	UFUNCTION(BlueprintCallable)
+		void OnButtonClick();
 
 public:
-	TWeakPtr<AAmberCharacter> PlayerRef;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+		FAmberItemInfo ItemInfo;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
-	FAmberItemInfo ItemInfo;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
-	class UButton* ButtonIcon;
+		UButton* ButtonIcon;
 };

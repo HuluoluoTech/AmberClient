@@ -92,7 +92,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly) //, Category = AmberPlayerProps
 		FAmberPlayerProp AmberPlayerProp;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		FAmberItemInfo ItemSelected;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)

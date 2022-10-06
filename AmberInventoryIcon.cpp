@@ -2,7 +2,7 @@
 
 
 #include "AmberInventoryIcon.h"
-
+#include "Kismet/GameplayStatics.h"
 
 UAmberInventoryIcon::UAmberInventoryIcon(const FObjectInitializer& ObjectInitializer) : UUserWidget(ObjectInitializer)
 {
@@ -12,23 +12,16 @@ UAmberInventoryIcon::UAmberInventoryIcon(const FObjectInitializer& ObjectInitial
 	}
 }
 
-void UAmberInventoryIcon::SetPlayerRef(TWeakPtr<AAmberCharacter> AmberPlayer)
-{
-	PlayerRef = AmberPlayer;
-}
-
-void UAmberInventoryIcon::SetItemInfo(FAmberItemInfo AmberItemInfo)
-{
-	this->ItemInfo.ItemClass = AmberItemInfo.ItemClass;
-}
-
 void UAmberInventoryIcon::OnButtonClick()
 {
-	TSharedPtr<AAmberCharacter> SPlayerRef(PlayerRef.Pin());
-	if (SPlayerRef->ItemSelected.ItemClass == ItemInfo.ItemClass) {
-		SPlayerRef->UseItem(ItemInfo);
+	ACharacter* myPawn = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0);
+	AAmberCharacter* AmberCharacter = Cast<AAmberCharacter>(myPawn);
+
+	// 双击了Icon，直接调用使用方法
+	if (AmberCharacter->ItemSelected.ItemClass == ItemInfo.ItemClass) {
+		AmberCharacter->UseItem(ItemInfo);
 	}
 	else {
-		ItemInfo = SPlayerRef->ItemSelected;
+		AmberCharacter->ItemSelected = ItemInfo;
 	}
 }

@@ -27,7 +27,9 @@ public:
 	void SetPlayerRef(AAmberCharacter* AmberPlayer);
 	void BuildInventory();
 	void OnItemDrop();
-	void OnItemUse();
+
+	UFUNCTION(BlueprintCallable)
+		void OnItemUse();
 
 public:
 	AAmberCharacter* PlayerRef;
@@ -42,5 +44,7 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
 		UImage* ItemImagePreview;
-	
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+		FAmberItemInfo ItemInfo;
 };
