@@ -214,13 +214,13 @@ void AAmberCharacter::OnBeginOverlapL(class AActor* OtherActor)
 
 	if (OtherActor->Implements<UInteractable>()) {
 		InteractInRange.AddUnique(Cast<AAmberActorBaseInteractable>(OtherActor));
-	}
 
-	const AAmberActorBaseInteractable* t = Cast<AAmberActorBaseInteractable>(OtherActor);
-	const FString Name = GetItemNameFromEnum(t->ItemName);
-	UE_LOG(LogTemp, Warning, TEXT("Overlap With : %s"), *Name);
-	t->ItemInfo->DumpItemInfo();
-	UE_LOG(LogTemp, Warning, TEXT("Overlap End..."));
+		const AAmberActorBaseInteractable* t = Cast<AAmberActorBaseInteractable>(OtherActor);
+		const FString Name = GetItemNameFromEnum(t->ItemName);
+		UE_LOG(LogTemp, Warning, TEXT("Overlap With : %s"), *Name);
+		t->ItemInfo->DumpItemInfo();
+		UE_LOG(LogTemp, Warning, TEXT("Overlap End..."));
+	}
 }
 
 void AAmberCharacter::OnEndOverlapL(class AActor* OtherActor)
