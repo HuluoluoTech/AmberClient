@@ -25,3 +25,4 @@ UI related System like HUD,Menu etc, are using Blueprint
 - [x] Menu & Input Binding
 - [ ] Melee Combat System
 - [x] Monster & NPCs
+- [x] Add `AmberWorker` Runnable Class
