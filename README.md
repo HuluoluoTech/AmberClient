@@ -5,8 +5,8 @@ Amber A RPG with UE5 C++
 WIP Pre
 
 ## Developing Code
-UE 5 C++ prefered  
-UI related System like HUD,Menu etc, are using Blueprint 
+UE 5 C++ preferred  
+UI related Systems like HUD,Menu etc, are using Blueprint to design and impl.
 
 ## Feautures
 - [x] 001 - UE 5 C++ Based Project Setup
@@ -25,4 +25,4 @@ UI related System like HUD,Menu etc, are using Blueprint
 - [x] Menu & Input Binding
 - [ ] Melee Combat System
 - [x] Monster & NPCs
-- [x] Add `AmberWorker` Runnable Class
+- [x] Add `AmberWorker` Class based on `FRunnable`
