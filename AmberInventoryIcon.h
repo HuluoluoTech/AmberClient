@@ -8,7 +8,6 @@
 #include "Components/Button.h"
 #include "AmberItemInfo.h"
 
-
 #include "AmberInventoryIcon.generated.h"
 
 /**
@@ -26,7 +25,7 @@ public:
 		void OnButtonClick();
 
 public:
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		FAmberItemInfo ItemInfo;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))

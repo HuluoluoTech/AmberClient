@@ -136,7 +136,32 @@ void AAmberCharacter::MoveRight(float Value)
 
 void AAmberCharacter::UseItem(FAmberItemInfo ItemInfo)
 {
+	for (int Index = 0; Index < Inventory.Num(); Index++)
+	{
+		FAmberItemInfo Item = Inventory[Index];
 
+		UE_LOG(LogTemp, Warning, TEXT("Item Name = %s"), *Item.ItemName);
+		UE_LOG(LogTemp, Warning, TEXT("Item Info Name = %s"), *ItemInfo.ItemName);
+
+		if (Item.ItemName == ItemInfo.ItemName)
+		{
+			Item.CurrentStack -= 1;
+			UE_LOG(LogTemp, Warning, TEXT("Current Stack = %d"), Item.CurrentStack);
+
+			if (Item.CurrentStack == 0)
+			{
+				Inventory.RemoveAt(Index);
+			}
+			else
+			{
+				// update CurrentStack
+
+				Inventory[Index] = Item;
+			}
+
+			UE_LOG(LogTemp, Warning, TEXT("Size: %d"), Inventory.Num());
+		}
+	}
 }
 
 void AAmberCharacter::ToggleMenu(UUserWidget* UserWidget)

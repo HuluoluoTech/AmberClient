@@ -24,4 +24,6 @@ void UAmberInventoryIcon::OnButtonClick()
 	else {
 		AmberCharacter->ItemSelected = ItemInfo;
 	}
+
+	AmberCharacter->ItemSelected = ItemInfo;
 }

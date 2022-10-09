@@ -49,10 +49,10 @@ void AAmberMonster::Tick(float DeltaTime)
 
 	// Player Location
 	FVector PlayerLocation = AmberCharacter->GetActorLocation();
-	 UE_LOG(LogTemp, Warning, TEXT("PlayerLocation = %s"), *PlayerLocation.ToString());
+	 //UE_LOG(LogTemp, Warning, TEXT("PlayerLocation = %s"), *PlayerLocation.ToString());
 
 	FVector MonsterLocation = GetActorLocation();
-	 UE_LOG(LogTemp, Warning, TEXT("MonsterLocation = %s"), *MonsterLocation.ToString());
+	 //UE_LOG(LogTemp, Warning, TEXT("MonsterLocation = %s"), *MonsterLocation.ToString());
 
 	//// Player - Monster
 	//// Direction

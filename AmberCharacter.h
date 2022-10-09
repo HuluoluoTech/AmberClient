@@ -5,19 +5,15 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "AmberPlayerStats.h"
-#include "AmberItemInfo.h"
-//#include "AmberInventoryIcon.h"
-//#include "AmberPlayerHUD.h"
 #include "Interactable.h"
 #include "AmberActorBaseInteractable.h"
-
+#include "AmberItemInfo.h"
 
 #include "AmberCharacter.generated.h"
 
 class UAmberInventoryIcon;
 class UAmberPlayerHUD;
 class UAmberPlayerMenu;
-struct FAmberItemInfo;
 
 UENUM()
 enum class EMenuStatus : uint8
@@ -94,6 +90,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		FAmberItemInfo ItemSelected;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		FAmberItemInfo SwordInfo;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 		TArray<FAmberItemInfo> Inventory;

@@ -24,27 +24,27 @@ public:
 	UAmberPlayerMenu(const FObjectInitializer& ObjectInitializer);
 
 public:
-	void SetPlayerRef(AAmberCharacter* AmberPlayer);
-	void BuildInventory();
-	void OnItemDrop();
+	UFUNCTION(BlueprintCallable)
+		void OnItemDrop();
 
 	UFUNCTION(BlueprintCallable)
 		void OnItemUse();
 
+	UFUNCTION(BlueprintCallable)
+		void BuildInventory();
 public:
-	AAmberCharacter* PlayerRef;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		AAmberCharacter* PlayerRef;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
 		class UUniformGridPanel* InventoryPanel;
-
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
 		class UButton* ButtonUse;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
 		class UButton* ButtonDrop;
-
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
 		UImage* ItemImagePreview;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		FAmberItemInfo ItemInfo;
 };

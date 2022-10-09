@@ -7,26 +7,11 @@
 
 UAmberPlayerMenu::UAmberPlayerMenu(const FObjectInitializer& ObjectInitializer): UUserWidget(ObjectInitializer)
 {
-	BuildInventory();
-}
-
-void UAmberPlayerMenu::SetPlayerRef(AAmberCharacter* AmberPlayer)
-{
-	PlayerRef = AmberPlayer;
-
-	if (ButtonUse)
-	{
-		ButtonUse->OnClicked.AddDynamic(this, &UAmberPlayerMenu::OnItemUse);
-	}
-
-	if (ItemImagePreview)
-	{
-	}
 }
 
 void UAmberPlayerMenu::OnItemUse()
 {
-	PlayerRef->UseItem(ItemInfo);
+	PlayerRef->UseItem(PlayerRef->ItemSelected);
 }
 
 void UAmberPlayerMenu::OnItemDrop()
@@ -36,17 +21,29 @@ void UAmberPlayerMenu::OnItemDrop()
 
 void UAmberPlayerMenu::BuildInventory()
 {
-	for (int Row = 0; Row < 5; Row++)
-	{
-		for (int Column = 0; Column < Row; Column++)
-		{
-			int Index = Row * 5 + Column;
+	//for (int Index = 0; Index < 25; Index++)
+	//{
+	//	UE_LOG(LogTemp, Warning, TEXT("Index = %d"), Index);
 
-			UAmberInventoryIcon* AmberInventoryIcon = CreateWidget<UAmberInventoryIcon>(this, UAmberInventoryIcon::StaticClass());
-			/*if (PlayerRef->Inventory.Num() >= Index) {
-				AmberInventoryIcon->SetItemInfo(PlayerRef->Inventory[Index]);
-			}*/
-			InventoryPanel->AddChildToUniformGrid(AmberInventoryIcon, Row, Column);
-		}
-	}
+	//	UAmberInventoryIcon* AmberInventoryIcon = CreateWidget<UAmberInventoryIcon>(this, UAmberInventoryIcon::StaticClass());
+	//	if (PlayerRef)
+	//	{
+	//		int Num = PlayerRef->Inventory.Num();
+	//		//UE_LOG(LogTemp, Warning, TEXT("Num = %d"), Num);
+
+	//		if (Num > Index)
+	//		{
+
+	//			AmberInventoryIcon->ItemInfo = PlayerRef->Inventory[Index];
+
+	//			UE_LOG(LogTemp, Warning, TEXT("Add One %s"), *AmberInventoryIcon->ItemInfo.ItemName);
+
+	//		}
+	//	}
+
+	//	UE_LOG(LogTemp, Warning, TEXT("InventoryPanel = %d"), InventoryPanel == nullptr);
+
+	//	InventoryPanel->AddChildToUniformGrid(AmberInventoryIcon, Index / 25, Index % 25);
+
+	//}
 }
