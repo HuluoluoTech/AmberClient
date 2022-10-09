@@ -10,7 +10,7 @@ UI related Systems like HUD,Menu etc, are using Blueprint to design and impl.
 
 ## Feautures
 - [x] 001 - UE 5 C++ Based Project Setup
-- [x] 002 - Amber Player Character movement
+- [x] 002 - Amber Player Character movement & Animation
 - [x] 003 - Add Player Props & Add HUD: Health Bar / Mana Bar / XP Bar / Level Tip
 - [x] 004 - Inventory System : E_AmberPlayerName / S_AmberItemInfo
 - [x] 005 - Inventory System : Building DataTable Based on S_AmberItemInfo
